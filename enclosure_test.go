@@ -1,7 +1,7 @@
 package podcast_test
 
 import (
-	"github.com/eduncan911/podcast"
+	"github.com/jpicht/podcast"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

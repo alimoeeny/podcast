@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/eduncan911/podcast"
+	"github.com/jpicht/podcast"
 )
 
 func Example_httpHandlers() {
@@ -78,7 +78,7 @@ func Example_httpHandlers() {
 	//     <title>eduncan911 Podcasts</title>
 	//     <link>http://eduncan911.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v1.3.1 (github.com/eduncan911/podcast)</generator>
+	//     <generator>go podcast v1.3.1 (github.com/jpicht/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>me@janedoe.com (Jane Doe)</managingEditor>
@@ -170,7 +170,7 @@ func Example_ioWriter() {
 	//     <title>Sample Podcasts</title>
 	//     <link>http://example.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v1.3.1 (github.com/eduncan911/podcast)</generator>
+	//     <generator>go podcast v1.3.1 (github.com/jpicht/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>jane.doe@example.com (Jane Doe)</managingEditor>
