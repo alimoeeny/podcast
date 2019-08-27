@@ -21,7 +21,7 @@ func TestNewNonNils(t *testing.T) {
 	ti, l, d := "title", "link", "description"
 
 	// act
-	p := podcast.New(ti, l, d, &createdDate, &updatedDate)
+	p := podcast.New(ti, l, d, createdDate, updatedDate)
 
 	// assert
 	assert.EqualValues(t, ti, p.Title)
@@ -38,7 +38,7 @@ func TestNewNils(t *testing.T) {
 	ti, l, d := "title", "link", "description"
 
 	// act
-	p := podcast.New(ti, l, d, nil, nil)
+	p := podcast.New(ti, l, d, time.Time{}, time.Time{})
 
 	// assert
 	now := time.Now().UTC().Format(time.RFC1123Z)
@@ -54,7 +54,7 @@ func TestAddAuthorEmailEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddAuthor("", "")
@@ -68,7 +68,7 @@ func TestAddAtomLinkHrefEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddAtomLink("")
@@ -81,7 +81,7 @@ func TestAddCategoryEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddCategory("", nil)
@@ -95,7 +95,7 @@ func TestAddCategorySubCatEmpty1(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddCategory("mycat", []string{""})
@@ -110,7 +110,7 @@ func TestAddCategorySubCatEmpty2(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddCategory("mycat", []string{"xyz", "", "abc"})
@@ -125,7 +125,7 @@ func TestAddImageEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// act
 	p.AddImage("")
@@ -139,7 +139,7 @@ func TestAddItemEmptyTitleDescription(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{}
 
 	// act
@@ -157,7 +157,7 @@ func TestAddItemEmptyEnclosureURL(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.AddEnclosure("", podcast.MP3, 1)
 
@@ -174,7 +174,7 @@ func TestAddItemEmptyEnclosureType(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.AddEnclosure("http://example.com/1.mp3", 99, 1)
 
@@ -191,7 +191,7 @@ func TestAddItemEmptyLink(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 
 	// act
@@ -207,7 +207,7 @@ func TestAddItemEnclosureLengthMin(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.AddEnclosure("http://example.com/1.mp3", podcast.MP3, -1)
 
@@ -225,7 +225,7 @@ func TestAddItemEnclosureNoLinkOverride(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.AddEnclosure("http://example.com/1.mp3", podcast.MP3, -1)
 
@@ -244,7 +244,7 @@ func TestAddItemEnclosureLinkPresentNoOverride(t *testing.T) {
 
 	// arrange
 	theLink := "http://someotherurl.com/story.html"
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.Link = theLink
 	i.AddEnclosure("http://example.com/1.mp3", podcast.MP3, -1)
@@ -264,7 +264,7 @@ func TestAddItemNoEnclosureGUIDValid(t *testing.T) {
 
 	// arrange
 	theLink := "http://someotherurl.com/story.html"
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc"}
 	i.Link = theLink
 
@@ -283,7 +283,7 @@ func TestAddItemAuthor(t *testing.T) {
 
 	// arrange
 	theAuthor := podcast.Author{Name: "Jane Doe", Email: "me@janedoe.com"}
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{Title: "title", Description: "desc", Link: "http://a.co/"}
 	i.Author = &theAuthor
 
@@ -303,7 +303,7 @@ func TestAddItemRootManagingEditorSetsAuthorIAuthor(t *testing.T) {
 
 	// arrange
 	theAuthor := "me@janedoe.com"
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	p.ManagingEditor = theAuthor
 	i := podcast.Item{Title: "title", Description: "desc", Link: "http://a.co/"}
 
@@ -322,7 +322,7 @@ func TestAddItemRootIAuthorSetsAuthorIAuthor(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	p.IAuthor = "me@janedoe.com"
 	i := podcast.Item{Title: "title", Description: "desc", Link: "http://a.co/"}
 
@@ -341,7 +341,7 @@ func TestAddSubTitleEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "desc", "Link", nil, nil)
+	p := podcast.New("title", "desc", "Link", time.Now(), time.Now())
 
 	// act
 	p.AddSubTitle("")
@@ -354,7 +354,7 @@ func TestAddSubTitleTooLong(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "desc", "Link", nil, nil)
+	p := podcast.New("title", "desc", "Link", time.Now(), time.Now())
 	subTitle := ""
 	for {
 		if len(subTitle) >= 80 {
@@ -378,7 +378,7 @@ func TestAddSummaryTooLong(t *testing.T) {
 		"title",
 		"desc",
 		"Link",
-		nil, nil)
+		time.Now(), time.Now())
 	summary := ""
 	for {
 		if len(summary) >= 4051 {
@@ -398,7 +398,7 @@ func TestAddSummaryEmpty(t *testing.T) {
 	t.Parallel()
 
 	// arrange
-	p := podcast.New("title", "desc", "Link", nil, nil)
+	p := podcast.New("title", "desc", "Link", time.Now(), time.Now())
 
 	// act
 	p.AddSummary("")

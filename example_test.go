@@ -21,7 +21,7 @@ func Example_httpHandlers() {
 			"eduncan911 Podcasts",
 			"http://eduncan911.com/",
 			"An example Podcast",
-			&pubDate, &updatedDate,
+			pubDate, updatedDate,
 		)
 
 		// add some channel properties
@@ -40,7 +40,7 @@ func Example_httpHandlers() {
 				Title:       "Episode " + n,
 				Link:        "http://example.com/" + n + ".mp3",
 				Description: "Description for Episode " + n,
-				PubDate:     &d,
+				PubDate:     d,
 			}
 			item.AddImage("http://example.com/episode-" + n + ".png")
 			item.AddSummary(`item <a href="http://example.com">example.com</a>`)
@@ -126,7 +126,7 @@ func Example_ioWriter() {
 		"Sample Podcasts",
 		"http://example.com/",
 		"An example Podcast",
-		&createdDate, &updatedDate,
+		createdDate, updatedDate,
 	)
 
 	// add some channel properties
@@ -145,7 +145,7 @@ func Example_ioWriter() {
 			Title:       "Episode " + n,
 			Description: "Description for Episode " + n,
 			ISubtitle:   "A simple episode " + n,
-			PubDate:     &d,
+			PubDate:     d,
 		}
 		item.AddImage("http://example.com/episode-" + n + ".png")
 		item.AddSummary(`item k <a href="http://example.com">example.com</a>`)
