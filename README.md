@@ -105,17 +105,17 @@ Thank you!
   * [func (i \*Item) AddDuration(durationInSeconds int64)](#Item.AddDuration)
   * [func (i \*Item) AddEnclosure(url string, enclosureType EnclosureType, lengthInBytes int64)](#Item.AddEnclosure)
   * [func (i \*Item) AddImage(url string)](#Item.AddImage)
-  * [func (i \*Item) AddPubDate(datetime \*time.Time)](#Item.AddPubDate)
+  * [func (i \*Item) AddPubDate(datetime time.Time)](#Item.AddPubDate)
   * [func (i \*Item) AddSummary(summary string)](#Item.AddSummary)
 * [type Podcast](#Podcast)
-  * [func New(title, link, description string, pubDate, lastBuildDate \*time.Time) Podcast](#New)
+  * [func New(title, link, description string, pubDate, lastBuildDate time.Time) Podcast](#New)
   * [func (p \*Podcast) AddAtomLink(href string)](#Podcast.AddAtomLink)
   * [func (p \*Podcast) AddAuthor(name, email string)](#Podcast.AddAuthor)
   * [func (p \*Podcast) AddCategory(category string, subCategories []string)](#Podcast.AddCategory)
   * [func (p \*Podcast) AddImage(url string)](#Podcast.AddImage)
   * [func (p \*Podcast) AddItem(i Item) (int, error)](#Podcast.AddItem)
-  * [func (p \*Podcast) AddLastBuildDate(datetime \*time.Time)](#Podcast.AddLastBuildDate)
-  * [func (p \*Podcast) AddPubDate(datetime \*time.Time)](#Podcast.AddPubDate)
+  * [func (p \*Podcast) AddLastBuildDate(datetime time.Time)](#Podcast.AddLastBuildDate)
+  * [func (p \*Podcast) AddPubDate(datetime time.Time)](#Podcast.AddPubDate)
   * [func (p \*Podcast) AddSubTitle(subTitle string)](#Podcast.AddSubTitle)
   * [func (p \*Podcast) AddSummary(summary string)](#Podcast.AddSummary)
   * [func (p \*Podcast) Bytes() []byte](#Podcast.Bytes)
@@ -285,7 +285,7 @@ type Item struct {
     Category         string     `xml:"category,omitempty"`
     Comments         string     `xml:"comments,omitempty"`
     Source           string     `xml:"source,omitempty"`
-    PubDate          *time.Time `xml:"-"`
+    PubDate          time.Time `xml:"-"`
     PubDateFormatted string     `xml:"pubDate,omitempty"`
     Enclosure        *Enclosure
 
@@ -347,7 +347,7 @@ image files.
 
 ### <a name="Item.AddPubDate">func</a> (\*Item) [AddPubDate](./item.go#L79)
 ``` go
-func (i *Item) AddPubDate(datetime *time.Time)
+func (i *Item) AddPubDate(datetime time.Time)
 ```
 AddPubDate adds the datetime as a parsed PubDate.
 
@@ -411,7 +411,7 @@ Podcast represents a podcast.
 ### <a name="New">func</a> [New](./podcast.go#L64-L65)
 ``` go
 func New(title, link, description string,
-    pubDate, lastBuildDate *time.Time) Podcast
+    pubDate, lastBuildDate time.Time) Podcast
 ```
 New instantiates a Podcast with required parameters.
 
@@ -576,7 +576,7 @@ Recommendations:
 
 ### <a name="Podcast.AddLastBuildDate">func</a> (\*Podcast) [AddLastBuildDate](./podcast.go#L340)
 ``` go
-func (p *Podcast) AddLastBuildDate(datetime *time.Time)
+func (p *Podcast) AddLastBuildDate(datetime time.Time)
 ```
 AddLastBuildDate adds the datetime as a parsed PubDate.
 
@@ -584,7 +584,7 @@ UTC time is used by default.
 
 ### <a name="Podcast.AddPubDate">func</a> (\*Podcast) [AddPubDate](./podcast.go#L333)
 ``` go
-func (p *Podcast) AddPubDate(datetime *time.Time)
+func (p *Podcast) AddPubDate(datetime time.Time)
 ```
 AddPubDate adds the datetime as a parsed PubDate.
 

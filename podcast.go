@@ -63,7 +63,7 @@ type Podcast struct {
 // Nil-able fields are optional but recommended as they are formatted
 // to the expected proper formats.
 func New(title, link, description string,
-	pubDate, lastBuildDate *time.Time) Podcast {
+	pubDate, lastBuildDate time.Time) Podcast {
 	return Podcast{
 		Title:         title,
 		Link:          link,
@@ -331,14 +331,14 @@ func (p *Podcast) AddItem(i Item) (int, error) {
 // AddPubDate adds the datetime as a parsed PubDate.
 //
 // UTC time is used by default.
-func (p *Podcast) AddPubDate(datetime *time.Time) {
+func (p *Podcast) AddPubDate(datetime time.Time) {
 	p.PubDate = parseDateRFC1123Z(datetime)
 }
 
 // AddLastBuildDate adds the datetime as a parsed PubDate.
 //
 // UTC time is used by default.
-func (p *Podcast) AddLastBuildDate(datetime *time.Time) {
+func (p *Podcast) AddLastBuildDate(datetime time.Time) {
 	p.LastBuildDate = parseDateRFC1123Z(datetime)
 }
 
@@ -437,8 +437,8 @@ var encoder = func(w io.Writer, o interface{}) error {
 	return nil
 }
 
-var parseDateRFC1123Z = func(t *time.Time) string {
-	if t != nil && !t.IsZero() {
+var parseDateRFC1123Z = func(t time.Time) string {
+	if !t.IsZero() {
 		return t.Format(time.RFC1123Z)
 	}
 	return time.Now().UTC().Format(time.RFC1123Z)

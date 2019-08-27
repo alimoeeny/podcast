@@ -24,18 +24,18 @@ import (
 // - Always set an Enclosure.Length, to be nice to your downloaders.
 // - Use Enclosure.Type instead of setting TypeFormatted for valid extensions.
 type Item struct {
-	XMLName          xml.Name   `xml:"item"`
-	GUID             string     `xml:"guid"`
-	Title            string     `xml:"title"`
-	Link             string     `xml:"link"`
-	Description      string     `xml:"description"`
-	Author           *Author    `xml:"-"`
-	AuthorFormatted  string     `xml:"author,omitempty"`
-	Category         string     `xml:"category,omitempty"`
-	Comments         string     `xml:"comments,omitempty"`
-	Source           string     `xml:"source,omitempty"`
-	PubDate          *time.Time `xml:"-"`
-	PubDateFormatted string     `xml:"pubDate,omitempty"`
+	XMLName          xml.Name  `xml:"item"`
+	GUID             string    `xml:"guid"`
+	Title            string    `xml:"title"`
+	Link             string    `xml:"link"`
+	Description      string    `xml:"description"`
+	Author           *Author   `xml:"-"`
+	AuthorFormatted  string    `xml:"author,omitempty"`
+	Category         string    `xml:"category,omitempty"`
+	Comments         string    `xml:"comments,omitempty"`
+	Source           string    `xml:"source,omitempty"`
+	PubDate          time.Time `xml:"-"`
+	PubDateFormatted string    `xml:"pubDate,omitempty"`
 	Enclosure        *Enclosure
 
 	// https://help.apple.com/itc/podcasts_connect/#/itcb54353390
@@ -77,7 +77,7 @@ func (i *Item) AddImage(url string) {
 // AddPubDate adds the datetime as a parsed PubDate.
 //
 // UTC time is used by default.
-func (i *Item) AddPubDate(datetime *time.Time) {
+func (i *Item) AddPubDate(datetime time.Time) {
 	i.PubDate = datetime
 	i.PubDateFormatted = parseDateRFC1123Z(i.PubDate)
 }
