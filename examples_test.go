@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jpicht/podcast"
+	"github.com/cykor/podcast"
 )
 
 func ExampleNew() {
