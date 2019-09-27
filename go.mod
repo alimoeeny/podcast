@@ -1,4 +1,4 @@
-module github.com/jpicht/podcast
+module github.com/cykor/podcast
 
 go 1.12
 
