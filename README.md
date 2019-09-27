@@ -51,6 +51,10 @@ address it as soon as possible.
 Thank you!
 
 ### Release Notes
+2.0.1
+* Only change GUID if it's nil (podcast.go)
+* bump pVersion to 2.0.1
+
 2.0.0
 * remove all instances of \*time.Time from the API and replace them by time.Time by value
 * go mod
