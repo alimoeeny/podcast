@@ -49,6 +49,13 @@
 //
 // Release Notes
 //
+// 2.0.1
+// - Only change GUID if it's nil (podcast.go)
+//
+// 2.0.0
+// * remove all instances of *time.Time from the API and replace them by time.Time by value
+// * go mod
+//
 // 1.3.1
 // * increased itunes compliance after feedback from Apple:
 // - specified what categories should be set with AddCategory().
