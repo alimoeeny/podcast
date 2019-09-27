@@ -3,7 +3,7 @@ package podcast_test
 import (
 	"testing"
 
-	"github.com/jpicht/podcast"
+	"github.com/cykor/podcast"
 	"github.com/stretchr/testify/assert"
 )
 
