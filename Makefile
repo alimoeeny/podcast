@@ -1,6 +1,6 @@
 SHELL = /bin/bash
 
-GITHUB_REPO := "jpicht/podcast"
+GITHUB_REPO := "cykor/podcast"
 
 README:
 	godoc2ghmd github.com/$(GITHUB_REPO) > README.md.tmp
