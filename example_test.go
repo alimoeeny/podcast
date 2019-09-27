@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/jpicht/podcast"
+	"github.com/cykor/podcast"
 )
 
 func Example_httpHandlers() {
