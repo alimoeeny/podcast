@@ -288,7 +288,9 @@ func (p *Podcast) AddItem(i Item) (int, error) {
 	i.PubDateFormatted = parseDateRFC1123Z(i.PubDate)
 	i.AuthorFormatted = parseAuthorNameEmail(i.Author)
 	if i.Enclosure != nil {
-		i.GUID = i.Enclosure.URL // yep, GUID is the Permlink URL
+		if i.GUID = nil { // Only change GUID if it's nil
+			i.GUID = i.Enclosure.URL // yep, GUID is the Permlink URL
+		}
 
 		if i.Enclosure.Length < 0 {
 			i.Enclosure.Length = 0
@@ -302,7 +304,9 @@ func (p *Podcast) AddItem(i Item) (int, error) {
 			i.Link = i.Enclosure.URL
 		}
 	} else {
-		i.GUID = i.Link // yep, GUID is the Permlink URL
+		if i.GUID = nil { // Only change if it's nil
+			i.GUID = i.Link // yep, GUID is the Permlink URL
+		}
 	}
 
 	// iTunes it
