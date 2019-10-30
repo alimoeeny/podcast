@@ -1,21 +1,21 @@
-[![GoDoc](https://godoc.org/github.com/eduncan911/podcast?status.svg)](https://godoc.org/github.com/eduncan911/podcast)
-[![Build Status](https://travis-ci.org/eduncan911/podcast.svg?branch=master)](https://travis-ci.org/eduncan911/podcast)
-[![Coverage Status](https://coveralls.io/repos/github/eduncan911/podcast/badge.svg?branch=master)](https://coveralls.io/github/eduncan911/podcast?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/eduncan911/podcast)](https://goreportcard.com/report/github.com/eduncan911/podcast)
+[![GoDoc](https://godoc.org/github.com/cykor/podcast?status.svg)](https://godoc.org/github.com/cykor/podcast)
+[![Build Status](https://travis-ci.org/cykor/podcast.svg?branch=master)](https://travis-ci.org/cykor/podcast)
+[![Coverage Status](https://coveralls.io/repos/github/cykor/podcast/badge.svg?branch=master)](https://coveralls.io/github/cykor/podcast?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cykor/podcast)](https://goreportcard.com/report/github.com/cykor/podcast)
 [![MIT License](https://img.shields.io/npm/l/mediaelement.svg)](https://eduncan911.mit-license.org/)
 
 # podcast
 Package podcast generates a fully compliant iTunes and RSS 2.0 podcast feed
 for GoLang using a simple API.
 
-Full documentation with detailed examples located at <a href="https://godoc.org/github.com/eduncan911/podcast">https://godoc.org/github.com/eduncan911/podcast</a>
+Full documentation with detailed examples located at <a href="https://godoc.org/github.com/cykor/podcast">https://godoc.org/github.com/cykor/podcast</a>
 
 ### Usage
 To use, `go get` and `import` the package like your typical GoLang library.
 
-	$ go get -u github.com/eduncan911/podcast
+	$ go get -u github.com/cykor/podcast
 	
-	import "github.com/eduncan911/podcast"
+	import "github.com/cykor/podcast"
 
 The API exposes a number of method receivers on structs that implements the
 logic required to comply with the specifications and ensure a compliant feed.
@@ -25,7 +25,7 @@ Notably, the [Podcast.AddItem(i Item)](#Podcast.AddItem) function performs most
 of the heavy lifting by taking the [Item](#Item) input and performing
 validation, overrides and duplicate setters through the feed.
 
-Full detailed Examples of the API are at <a href="https://godoc.org/github.com/eduncan911/podcast">https://godoc.org/github.com/eduncan911/podcast</a>.
+Full detailed Examples of the API are at <a href="https://godoc.org/github.com/cykor/podcast">https://godoc.org/github.com/cykor/podcast</a>.
 
 ### Extensibility
 In no way are you restricted in having full control over your feeds.  You may
@@ -51,6 +51,14 @@ address it as soon as possible.
 Thank you!
 
 ### Release Notes
+2.0.1
+* Only change GUID if it's nil (podcast.go)
+* bump pVersion to 2.0.1
+
+2.0.0
+* remove all instances of \*time.Time from the API and replace them by time.Time by value
+* go mod
+
 1.3.1
 * increased itunes compliance after feedback from Apple:
 - specified what categories should be set with AddCategory().
@@ -105,17 +113,17 @@ Thank you!
   * [func (i \*Item) AddDuration(durationInSeconds int64)](#Item.AddDuration)
   * [func (i \*Item) AddEnclosure(url string, enclosureType EnclosureType, lengthInBytes int64)](#Item.AddEnclosure)
   * [func (i \*Item) AddImage(url string)](#Item.AddImage)
-  * [func (i \*Item) AddPubDate(datetime \*time.Time)](#Item.AddPubDate)
+  * [func (i \*Item) AddPubDate(datetime time.Time)](#Item.AddPubDate)
   * [func (i \*Item) AddSummary(summary string)](#Item.AddSummary)
 * [type Podcast](#Podcast)
-  * [func New(title, link, description string, pubDate, lastBuildDate \*time.Time) Podcast](#New)
+  * [func New(title, link, description string, pubDate, lastBuildDate time.Time) Podcast](#New)
   * [func (p \*Podcast) AddAtomLink(href string)](#Podcast.AddAtomLink)
   * [func (p \*Podcast) AddAuthor(name, email string)](#Podcast.AddAuthor)
   * [func (p \*Podcast) AddCategory(category string, subCategories []string)](#Podcast.AddCategory)
   * [func (p \*Podcast) AddImage(url string)](#Podcast.AddImage)
   * [func (p \*Podcast) AddItem(i Item) (int, error)](#Podcast.AddItem)
-  * [func (p \*Podcast) AddLastBuildDate(datetime \*time.Time)](#Podcast.AddLastBuildDate)
-  * [func (p \*Podcast) AddPubDate(datetime \*time.Time)](#Podcast.AddPubDate)
+  * [func (p \*Podcast) AddLastBuildDate(datetime time.Time)](#Podcast.AddLastBuildDate)
+  * [func (p \*Podcast) AddPubDate(datetime time.Time)](#Podcast.AddPubDate)
   * [func (p \*Podcast) AddSubTitle(subTitle string)](#Podcast.AddSubTitle)
   * [func (p \*Podcast) AddSummary(summary string)](#Podcast.AddSummary)
   * [func (p \*Podcast) Bytes() []byte](#Podcast.Bytes)
@@ -285,7 +293,7 @@ type Item struct {
     Category         string     `xml:"category,omitempty"`
     Comments         string     `xml:"comments,omitempty"`
     Source           string     `xml:"source,omitempty"`
-    PubDate          *time.Time `xml:"-"`
+    PubDate          time.Time `xml:"-"`
     PubDateFormatted string     `xml:"pubDate,omitempty"`
     Enclosure        *Enclosure
 
@@ -347,7 +355,7 @@ image files.
 
 ### <a name="Item.AddPubDate">func</a> (\*Item) [AddPubDate](./item.go#L79)
 ``` go
-func (i *Item) AddPubDate(datetime *time.Time)
+func (i *Item) AddPubDate(datetime time.Time)
 ```
 AddPubDate adds the datetime as a parsed PubDate.
 
@@ -411,7 +419,7 @@ Podcast represents a podcast.
 ### <a name="New">func</a> [New](./podcast.go#L64-L65)
 ``` go
 func New(title, link, description string,
-    pubDate, lastBuildDate *time.Time) Podcast
+    pubDate, lastBuildDate time.Time) Podcast
 ```
 New instantiates a Podcast with required parameters.
 
@@ -576,7 +584,7 @@ Recommendations:
 
 ### <a name="Podcast.AddLastBuildDate">func</a> (\*Podcast) [AddLastBuildDate](./podcast.go#L340)
 ``` go
-func (p *Podcast) AddLastBuildDate(datetime *time.Time)
+func (p *Podcast) AddLastBuildDate(datetime time.Time)
 ```
 AddLastBuildDate adds the datetime as a parsed PubDate.
 
@@ -584,7 +592,7 @@ UTC time is used by default.
 
 ### <a name="Podcast.AddPubDate">func</a> (\*Podcast) [AddPubDate](./podcast.go#L333)
 ``` go
-func (p *Podcast) AddPubDate(datetime *time.Time)
+func (p *Podcast) AddPubDate(datetime time.Time)
 ```
 AddPubDate adds the datetime as a parsed PubDate.
 

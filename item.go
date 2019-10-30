@@ -83,7 +83,7 @@ func (i *Item) AddImage(url string) {
 // AddPubDate adds the datetime as a parsed PubDate.
 //
 // UTC time is used by default.
-func (i *Item) AddPubDate(datetime *time.Time) {
+func (i *Item) AddPubDate(datetime time.Time) {
 	i.PubDate = datetime
 	i.PubDateFormatted = parseDateRFC1123Z(i.PubDate)
 }

@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 
-	"github.com/eduncan911/podcast"
+	"github.com/cykor/podcast"
 )
 
 func ExampleNew() {
 	ti, l, d := "title", "link", "description"
 
 	// instantiate a new Podcast
-	p := podcast.New(ti, l, d, &pubDate, &updatedDate)
+	p := podcast.New(ti, l, d, pubDate, updatedDate)
 
 	fmt.Println(p.Title, p.Link, p.Description, p.Language)
 	fmt.Println(p.PubDate, p.LastBuildDate)
@@ -22,7 +23,7 @@ func ExampleNew() {
 }
 
 func ExamplePodcast_AddAuthor() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// add the Author
 	p.AddAuthor("the name", "me@test.com")
@@ -35,7 +36,7 @@ func ExamplePodcast_AddAuthor() {
 }
 
 func ExamplePodcast_AddCategory() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// add the Category
 	p.AddCategory("Bombay", nil)
@@ -50,7 +51,7 @@ func ExamplePodcast_AddCategory() {
 }
 
 func ExamplePodcast_AddImage() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// add the Image
 	p.AddImage("http://example.com/image.jpg")
@@ -65,7 +66,7 @@ func ExamplePodcast_AddImage() {
 }
 
 func ExamplePodcast_AddItem() {
-	p := podcast.New("title", "link", "description", &pubDate, &updatedDate)
+	p := podcast.New("title", "link", "description", pubDate, updatedDate)
 	p.AddAuthor("the name", "me@test.com")
 	p.AddImage("http://example.com/image.jpg")
 
@@ -75,7 +76,7 @@ func ExamplePodcast_AddItem() {
 		Title:       "Episode 1",
 		Description: "Description for Episode 1",
 		ISubtitle:   "A simple episode 1",
-		PubDate:     &date,
+		PubDate:     date,
 	}
 	item.AddEnclosure(
 		"http://example.com/1.mp3",
@@ -104,10 +105,10 @@ func ExamplePodcast_AddItem() {
 }
 
 func ExamplePodcast_AddLastBuildDate() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	d := pubDate.AddDate(0, 0, -7)
 
-	p.AddLastBuildDate(&d)
+	p.AddLastBuildDate(d)
 
 	fmt.Println(p.LastBuildDate)
 	// Output:
@@ -115,10 +116,10 @@ func ExamplePodcast_AddLastBuildDate() {
 }
 
 func ExamplePodcast_AddPubDate() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	d := pubDate.AddDate(0, 0, -5)
 
-	p.AddPubDate(&d)
+	p.AddPubDate(d)
 
 	fmt.Println(p.PubDate)
 	// Output:
@@ -126,7 +127,7 @@ func ExamplePodcast_AddPubDate() {
 }
 
 func ExamplePodcast_AddSummary() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 
 	// add a summary
 	p.AddSummary(`A very cool podcast with a long summary!
@@ -148,7 +149,7 @@ func ExamplePodcast_Bytes() {
 		"eduncan911 Podcasts",
 		"http://eduncan911.com/",
 		"An example Podcast",
-		&pubDate, &updatedDate,
+		pubDate, updatedDate,
 	)
 	p.AddAuthor("Jane Doe", "me@janedoe.com")
 	p.AddImage("http://janedoe.com/i.jpg")
@@ -165,7 +166,7 @@ See more at our website: <a href="http://example.com">example.com</a>
 			Title:       "Episode " + n,
 			Link:        "http://example.com/" + n + ".mp3",
 			Description: "Description for Episode " + n,
-			PubDate:     &d,
+			PubDate:     d,
 		}
 		if _, err := p.AddItem(item); err != nil {
 			fmt.Println(item.Title, ": error", err.Error())
@@ -183,7 +184,7 @@ See more at our website: <a href="http://example.com">example.com</a>
 	//     <title>eduncan911 Podcasts</title>
 	//     <link>http://eduncan911.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v1.3.1 (github.com/eduncan911/podcast)</generator>
+	//     <generator>go podcast v2.0.1 (github.com/cykor/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>me@janedoe.com (Jane Doe)</managingEditor>
@@ -222,7 +223,7 @@ See more at our website: <a href="http://example.com">example.com</a>
 }
 
 func ExampleItem_AddPubDate() {
-	p := podcast.New("title", "link", "description", nil, nil)
+	p := podcast.New("title", "link", "description", time.Now(), time.Now())
 	i := podcast.Item{
 		Title:       "item title",
 		Description: "item desc",
@@ -231,13 +232,13 @@ func ExampleItem_AddPubDate() {
 	d := pubDate.AddDate(0, 0, -11)
 
 	// add the pub date
-	i.AddPubDate(&d)
+	i.AddPubDate(d)
 
-	if i.PubDate != nil {
-		fmt.Println(i.PubDateFormatted, *i.PubDate)
+	if !i.PubDate.IsZero() {
+		fmt.Println(i.PubDateFormatted, i.PubDate)
 	}
 	p.AddItem(i) // this should not override with Podcast.PubDate
-	fmt.Println(i.PubDateFormatted, *i.PubDate)
+	fmt.Println(i.PubDateFormatted, i.PubDate)
 	// Output:
 	// Tue, 24 Jan 2017 08:21:52 +0000 2017-01-24 08:21:52 +0000 UTC
 	// Tue, 24 Jan 2017 08:21:52 +0000 2017-01-24 08:21:52 +0000 UTC
