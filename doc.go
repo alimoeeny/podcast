@@ -1,15 +1,15 @@
 // Package podcast generates a fully compliant iTunes and RSS 2.0 podcast feed
 // for GoLang using a simple API.
 //
-// Full documentation with detailed examples located at https://godoc.org/github.com/eduncan911/podcast
+// Full documentation with detailed examples located at https://godoc.org/github.com/cykor/podcast
 //
 // Usage
 //
 // To use, `go get` and `import` the package like your typical GoLang library.
 //
-//     $ go get -u github.com/eduncan911/podcast
+//     $ go get -u github.com/cykor/podcast
 //
-//     import "github.com/eduncan911/podcast"
+//     import "github.com/cykor/podcast"
 //
 // The API exposes a number of method receivers on structs that implements the
 // logic required to comply with the specifications and ensure a compliant feed.
@@ -19,7 +19,7 @@
 // of the heavy lifting by taking the [Item](#Item) input and performing
 // validation, overrides and duplicate setters through the feed.
 //
-// Full detailed Examples of the API are at https://godoc.org/github.com/eduncan911/podcast.
+// Full detailed Examples of the API are at https://godoc.org/github.com/cykor/podcast.
 //
 // Extensibility
 //
@@ -48,6 +48,14 @@
 // Thank you!
 //
 // Release Notes
+//
+// 2.0.1
+// - Only change GUID if it's nil (podcast.go)
+// * Bump pVersion to 2.0.1
+//
+// 2.0.0
+// * remove all instances of *time.Time from the API and replace them by time.Time by value
+// * go mod
 //
 // 1.3.1
 // * increased itunes compliance after feedback from Apple:

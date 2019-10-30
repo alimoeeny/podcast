@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/eduncan911/podcast"
+	"github.com/cykor/podcast"
 )
 
 func Example_httpHandlers() {
@@ -21,7 +21,7 @@ func Example_httpHandlers() {
 			"eduncan911 Podcasts",
 			"http://eduncan911.com/",
 			"An example Podcast",
-			&pubDate, &updatedDate,
+			pubDate, updatedDate,
 		)
 
 		// add some channel properties
@@ -40,7 +40,7 @@ func Example_httpHandlers() {
 				Title:       "Episode " + n,
 				Link:        "http://example.com/" + n + ".mp3",
 				Description: "Description for Episode " + n,
-				PubDate:     &d,
+				PubDate:     d,
 			}
 			item.AddImage("http://example.com/episode-" + n + ".png")
 			item.AddSummary(`item <a href="http://example.com">example.com</a>`)
@@ -78,7 +78,7 @@ func Example_httpHandlers() {
 	//     <title>eduncan911 Podcasts</title>
 	//     <link>http://eduncan911.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v1.3.1 (github.com/eduncan911/podcast)</generator>
+	//     <generator>go podcast v2.0.1 (github.com/cykor/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>me@janedoe.com (Jane Doe)</managingEditor>
@@ -126,7 +126,7 @@ func Example_ioWriter() {
 		"Sample Podcasts",
 		"http://example.com/",
 		"An example Podcast",
-		&createdDate, &updatedDate,
+		createdDate, updatedDate,
 	)
 
 	// add some channel properties
@@ -145,7 +145,7 @@ func Example_ioWriter() {
 			Title:       "Episode " + n,
 			Description: "Description for Episode " + n,
 			ISubtitle:   "A simple episode " + n,
-			PubDate:     &d,
+			PubDate:     d,
 		}
 		item.AddImage("http://example.com/episode-" + n + ".png")
 		item.AddSummary(`item k <a href="http://example.com">example.com</a>`)
@@ -170,7 +170,7 @@ func Example_ioWriter() {
 	//     <title>Sample Podcasts</title>
 	//     <link>http://example.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v1.3.1 (github.com/eduncan911/podcast)</generator>
+	//     <generator>go podcast v2.0.1 (github.com/cykor/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>jane.doe@example.com (Jane Doe)</managingEditor>
