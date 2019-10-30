@@ -1,4 +1,4 @@
-module github.com/cykor/podcast
+module github.com/alimoeeny/podcast
 
 go 1.12
 
