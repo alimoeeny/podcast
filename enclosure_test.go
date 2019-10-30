@@ -1,9 +1,10 @@
 package podcast_test
 
 import (
+	"testing"
+
 	"github.com/eduncan911/podcast"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 type enclosureTest struct {
