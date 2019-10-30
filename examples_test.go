@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/cykor/podcast"
+	"github.com/alimoeeny/podcast"
 )
 
 func ExampleNew() {
@@ -184,7 +184,7 @@ See more at our website: <a href="http://example.com">example.com</a>
 	//     <title>eduncan911 Podcasts</title>
 	//     <link>http://eduncan911.com/</link>
 	//     <description>An example Podcast</description>
-	//     <generator>go podcast v2.0.1 (github.com/cykor/podcast)</generator>
+	//     <generator>go podcast v2.0.1 (github.com/alimoeeny/podcast)</generator>
 	//     <language>en-us</language>
 	//     <lastBuildDate>Mon, 06 Feb 2017 08:21:52 +0000</lastBuildDate>
 	//     <managingEditor>me@janedoe.com (Jane Doe)</managingEditor>
